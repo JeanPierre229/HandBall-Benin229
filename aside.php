@@ -13,17 +13,17 @@
         </div>
         <div class="text-center pb-2">
             <a href="adhesion_club.php" alt='el_a'>
-                <i class="fa fa-user" style="font-size: 25px; color:blue;"></i>
+                <i class="fa fa-users" style="font-size: 25px; color:blue;"></i>
                 <p class="h5">Adhérer Club</p>
             </a>
         </div>
         <div class="text-center pb-2">
-            <i class="fa fa-anchor" style="font-size: 25px; color:blue;"></i>
+            <i class="fa fa-group" style="font-size: 25px; color:blue;"></i>
             <p class="h5">Nos Clubs</p>
         </div>
         <div class="text-center pb-2">
             <a href="seformer.php" alt='el_a'>
-                <i class="fa fa-child" style="font-size: 25px; color:blue;"></i>
+                <i class="fa fa-graduation-cap" style="font-size: 25px; color:blue;"></i>
                 <p class="h5">Se former</p>
             </a>
         </div>
@@ -39,13 +39,15 @@
         </div>
         <div class="text-center pb-2">
             <a href="nos_joueurs.php" alt='el_a'>
-                <i class="fa fa-star" style="font-size: 25px; color:blue;"></i>
+                <i class="fa fa-star-o" style="font-size: 25px; color:blue;"></i>
                 <p class="h5">Nos joueurs</p>
             </a>
         </div>
         <div class="text-center">
-            <i class="fa fa-arrow-right" style="font-size: 25px; color:blue;"></i>
-            <p class="h5">Se déconnecter</p>
+            <a href="connexion.php" alt='el_a'>
+                <i class="fa fa-sign-in" style="font-size: 25px; color:blue;"></i>
+                <p class="h5">Se Connecter</p>
+            </a>
         </div>
     </div>
 </aside>

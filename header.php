@@ -9,8 +9,8 @@
         justify-content: space-between;
     }
     #profil{
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         border: px solid #fff;
         /* background-image: url("images/wax-person-04.png"); */
@@ -39,13 +39,16 @@
                 </div>
                 <div class="mx-5 mt-3 text-right col-7">
                     <span class="container text-right">
-                        <i class="fa fa-home px-1"></i>
-                        <i class="fa fa-home px-1"></i>
+                        <i class="fa fa-bell-o px-1" style="font-size: 20px;"></i>
+                        <i class="fa fa-comment-o px-1" style="font-size: 20px;"></i>
                     </span>
                     <span class="container text-right px-2">
-                            <img src="images/wax-person-04.png" alt="" class="img" id="profil">
+                            <img src="images/profil-header.jpg" alt="" class="img" id="profil">
                     </span>
-                    <i class="fa fa-angle-down px-5"></i>
+                    <span>
+                        HandBall
+                        <i class="fa fa-angle-down px-1" style="font-size: 20px;"></i>
+                    </span>
                 </div>
             </div>
         <!-- </div> -->

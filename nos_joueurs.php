@@ -76,10 +76,10 @@
                     <h4>Information clé</h4>
                 </div>
                 <div class="row">
-                    <?php information("home", "Performance", "83%") ?>
-                    <?php information("home", "Nombre de match gagné", "112h") ?>
-                    <?php information("home", "Nombre de match perdu", "10h") ?>
-                    <?php information("home", "Compétences", "7") ?>
+                    <?php information("check", "Performance", "83%") ?>
+                    <?php information("trophy", "Nombre de match gagné", "112h") ?>
+                    <?php information("minus-circle", "Nombre de match perdu", "10h") ?>
+                    <?php information("graduation-cap", "Compétences", "7") ?>
                 </div>
                 <div class="row mt-3 mx-5 my-2">
                     <div class="col mt-3 mr-5">
@@ -106,7 +106,7 @@
                         <div>
                             <div class="row info-joueur">
                                 <div class="bg-light m-3 p-3 info-joueur text-center">
-                                    <i class="fa fa-home" style="font-size: 30px;"></i>
+                                    <i class="fa fa-trophy" style="font-size: 30px;"></i>
                                 </div>
                                 <div class="">
                                     <p class="mt-2">
@@ -142,7 +142,7 @@
                         <div>
                             <div class="row info-joueur">
                                 <div class="bg-light m-3 p-3 info-joueur text-center">
-                                    <i class="fa fa-home" style="font-size: 30px;"></i>
+                                    <i class="fa fa-trophy" style="font-size: 30px;"></i>
                                 </div>
                                 <div class="">
                                     <p class="mt-2">
