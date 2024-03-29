@@ -1,0 +1,26 @@
+.ctn-img div{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+.input-back{
+    background-color: rgb(223, 221, 221);
+    color: black;
+}
+body a{
+    text-decoration: none;
+    color: white;
+}
+a[alt^='el_a']{
+    text-decoration: none;
+    color: black;
+}
+#search{
+    border: 0;
+}
+#person{
+    background-color: rgb(238, 238, 238);
+}
+.vid{
+    border-radius: 50%;
+}
