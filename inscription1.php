@@ -21,6 +21,7 @@
     <title>Waxangari_Labs-Inscription2</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/head-icon.png">
 </head>
 <body>
     <section>

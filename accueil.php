@@ -1,4 +1,5 @@
 <?php
+    $el = "accueil";
     function cadre_mission($img, $alt, $txt){
         echo '<div class="text-center col-4" style="font-size: 12px; font-weight: bold;">
                         <img src="' .$img. '" alt="' .$alt. '" class="img">
@@ -15,6 +16,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="icon" href="images/head-icon.png">
 </head>
 <body>
     <header>

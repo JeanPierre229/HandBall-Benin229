@@ -1,8 +1,9 @@
 <?php
+    $el = "nos_joueurs";
     function information($icon, $txt, $description){
         echo '<div class="col-2 ml-5 py-1 info-joueur">
             <div class="bg-light my-2 text-center">
-                <i class="fa fa-'.$icon.'"></i>
+                <i class="fa fa-'.$icon.'" aria-hidden="true"></i>
             </div>
             <div>
                 <p class="text-center" style="font-size: 12px;">' .$txt. '</p>
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="icon" href="images/head-icon.png">
 </head>
 <style>
     #img-traite{
@@ -62,7 +64,7 @@
                                 </div>
                                 <div class="text-center px-2 col-4" >
                                     <h5 class="text-danger" style="font-size: 18px;">Nombre de match gagné</h5>
-                                    <h4 class="mt-4">32</h4>
+                                    <h4 class="mt-5">32</h4>
                                 </div>
                                 <div class="text-center px-2 col-4" >
                                     <h5 class="text-danger" style="font-size: 18px;">Compétence clé</h5>
@@ -82,14 +84,14 @@
                     <?php information("graduation-cap", "Compétences", "7") ?>
                 </div>
                 <div class="row mt-3 mx-5 my-2">
-                    <div class="col mt-3 mr-5">
+                    <div class="col-5 mt-3 mr-5">
                         <div>
                             <h4>Suivi des progrès</h4>
                         </div>
                         <div class="mb-2">
                             <div class="row info-joueur">
                                 <div class="bg-light m-3 p-3 info-joueur text-center">
-                                    <i class="fa fa-home" style="font-size: 30px;"></i>
+                                    <i class="fa fa-glass" style="font-size: 30px;"></i>
                                 </div>
                                 <div class="">
                                     <p class="mt-2">
@@ -118,14 +120,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col mt-3">
+                    <div class="col-5 mt-3">
                         <div>
                             <h4>Suivi des progrès</h4>
                         </div>
                         <div class="mb-2">
                             <div class="row info-joueur">
                                 <div class="bg-light m-3 p-3 info-joueur text-center">
-                                    <i class="fa fa-home" style="font-size: 30px;"></i>
+                                    <i class="fa fa-glass" style="font-size: 30px;"></i>
                                 </div>
                                 <div class="">
                                     <p class="mt-2">

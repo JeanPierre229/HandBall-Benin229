@@ -1,4 +1,5 @@
 <?php
+    $el = "achat";
     function achat($nm_img, $alt, $titre_img, $prix){
         echo '<div class="text-center mx-auto">
                         <img src="' .$nm_img. '" alt="' .$alt. '" class="img w-75">
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="icon" href="images/head-icon.png">
 </head>
 <body>
     <header>

@@ -1,4 +1,5 @@
 <?php
+    $el = "adhesion";
     $titre = null;
     $video = null;
     function check($donnee){
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="icon" href="images/head-icon.png">
 </head>
 <body>
     <header>

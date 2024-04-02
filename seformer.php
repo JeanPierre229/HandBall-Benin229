@@ -1,4 +1,5 @@
 <?php
+    $el = "seformer";
     function view_img($img, $txt, $url_video, $duree = 10){
         echo '<div class="px-1 py-3 mx-2" id="person">
                         <img src="' .$img. '" alt="" class="img">
@@ -19,6 +20,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="icon" href="images/head-icon.png">
 </head>
 <body>
     <header>
@@ -27,8 +29,8 @@
     <main class="container-fluid">
         <div class="row">
         <?php require "aside.php"; ?>
-            <div class="col-10">
-                <h2 class="text-center">
+            <div class="col-10 mx-auto">
+                <h2 class="text-start mx-5">
                     <strong>Suivez nos formations pour améliorer votre niveau</strong>
                 </h2>
                 <div class="row px-3 mx-3 my-3">
