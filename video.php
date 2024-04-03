@@ -1,4 +1,5 @@
 <?php
+    // session_start();
     $el = "seformer";
     $titre = null;
     $video = null;

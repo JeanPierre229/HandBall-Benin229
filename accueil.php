@@ -1,4 +1,5 @@
 <?php
+    // session_start();
     $el = "accueil";
     function cadre_mission($img, $alt, $txt){
         echo '<div class="text-center col-4" style="font-size: 12px; font-weight: bold;">

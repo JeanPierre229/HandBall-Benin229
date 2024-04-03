@@ -1,4 +1,5 @@
 <?php
+    // session_start();
     $el = "adhesion";
     $titre = null;
     $video = null;

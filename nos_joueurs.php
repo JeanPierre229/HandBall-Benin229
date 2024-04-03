@@ -1,4 +1,5 @@
 <?php
+    // session_start();
     $el = "nos_joueurs";
     function information($icon, $txt, $description){
         echo '<div class="col-2 ml-5 py-1 info-joueur">

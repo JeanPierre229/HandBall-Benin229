@@ -1,3 +1,37 @@
+<?php
+    $mailError = null;
+    $nomPrenoms = null;
+    $motDePasse = null;
+    if(!empty($_POST) && isset($_POST)){
+        if(filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)){
+            $nomPrenoms = check($_POST['nom_prenoms']);
+            $motDePasse = check($_POST['motDePasse']);
+            $motDePasse = sha1($motDePasse);
+
+            $connect = new PDO('mysql: host=localhost; dbname=handball', 'root',"");
+            $requete = $connect->prepare("
+                INSERT INTO users(nom_prenoms, ville, age, mail, motDePasse, valcheck)
+                VALUES(?, ?, ?, ?, ?, ?);
+            ");
+            $requete->execute(
+                array(
+                    $nomPrenoms, $_POST['ville'], $_POST['age'], $_POST['mail'], 
+                    $motDePasse, $_POST['check']
+                    )
+            );
+            header("Location: connexion.php");
+        }else{
+            $mailError = "Votre mail n'est pas valide !";
+        }
+        
+    }
+    function check($donnee){
+        $donnee = trim($donnee);
+        $donnee = stripslashes($donnee);
+        $donnee = htmlspecialchars($donnee);
+        return $donnee;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,10 +53,10 @@
                         <h2 class="text-primary">Inscription (2/2)</h2>
                     </div>
                     <div>
-                        <form action="#" method="post">
+                        <form action="inscription2.php" method="post">
                             <div class="mt-2">
-                                <label class="form-label"for="nm_p">Noms et Prénoms</label>
-                                <input class="form-control" type="text" placeholder="John Doe" name="nm_p" id="nm_p" required>
+                                <label class="form-label"for="nom_prenoms">Noms et Prénoms</label>
+                                <input class="form-control" type="text" placeholder="John Doe" name="nom_prenoms" id="nom_prenoms" required>
                             </div>
                             <div class="mt-2">
                                 <label class="form-label"for="ville">Ville</label>
@@ -35,13 +69,18 @@
                             <div class="mt-2">
                                 <label class="form-label"for="mail">Adresse Email</label>
                                 <input class="form-control" type="text" placeholder="Veuillez entrer votre adresse email" name="mail" id="mail" required>
+                                <?php if($mailError): ?>
+                                    <p class="text-danger mt-2">
+                                        <?= $mailError ?>
+                                    </p>
+                                <?php endif ?>
                             </div>
                             <div class="mt-2">
                                 <label class="form-label"for="motDePasse">Mot de Passe</label>
                                 <input class="form-control" type="password" placeholder="Votre Mot de Passe" name="motDePasse" id="motDePasse" required>
                             </div>
                             <div class="mt-2">
-                                <input type="checkbox" name="connect">
+                                <input type="checkbox" name="check" id="check" checked>
                                 <span>Restez connecté</span>
                             </div>
                             <div class="mt-2">

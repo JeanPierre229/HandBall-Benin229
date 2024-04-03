@@ -25,7 +25,12 @@
                             Application d'inscription de handball au Bénin
                         </p>
                         <p>
-                            <a href="inscription1.php" class="text-light"><button class="btn btn-primary px-5">M'inscrire</button></a>
+                            <span>
+                                <a href="inscription1.php" class="text-light"><button class="btn btn-primary px-5">M'inscrire</button></a>
+                            </span>
+                            <span class='mx-2'>
+                                <a href="connexion.php" class="text-light"><button class="btn btn-primary px-5">Me Connecter</button></a>
+                            </span>
                         </p>
                     </div>
                 </div>

@@ -6,9 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <img src="images/wax-person-01.png" alt="Une personne" id=""/>
-        <hr width="100%" size="10" style="background-color: gray; border-radius: 10px;">
-    </div>
+    <form action="test.php" method="post">
+        <div>
+            <label for="check">Restez connecté</label>
+            <input type="checkbox" name="check" id="check">
+        </div>
+        <div>
+            <input type="submit" value="Envoyer">
+        </div>
+    </form>
 </body>
 </html>
