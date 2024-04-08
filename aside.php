@@ -49,17 +49,10 @@
             </a>
         </div>
         <div class="text-center">
-            <?php if(!empty($_SESSION['nom_prenoms']) && isset($_SESSION['nom_prenoms'])) { ?>
-                <a href="deconnexion.php" alt='el_a'>
-                    <i class="fa fa-sign-in" style="font-size: 25px; color:blue;"></i>
-                    <p class="h5">Se Déconnecter</p>
-                </a>
-            <?php }else{ ?>
-                <a href="welcome.php" alt='el_a'>
-                    <i class="fa fa-sign-in" style="font-size: 25px; color:blue;"></i>
-                    <p class="h5">Se Connecter</p>
-                </a>
-            <?php } ?>
+            <a href="deconnexion.php" alt='el_a'>
+                <i class="fa fa-sign-in" style="font-size: 25px; color:blue;"></i>
+                <p class="h5">Se Déconnecter</p>
+            </a>
         </div>
     </div>
 </aside>

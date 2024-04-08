@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $id_error = null;
     $mailError = null;
     $mail = null;
@@ -8,14 +9,13 @@
     $requete->execute();
     $users = $requete->fetchAll();
 
-    if(!empty($_POST) && isset($_POST)){
+    if(!empty($_POST) && isset($_POST)){ 
         if(filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)){
             foreach ($users as $user) {
                 if (
                     $user['mail'] === $_POST['mail']
                     && $user['motDePasse'] === sha1($_POST['motDePasse'])
                 ) {
-                    session_start();
                     $_SESSION['nom_prenoms'] = $user['noms_prenoms'];
                     $_SESSION['mail'] = $user['mail'];
                     $_SESSION['ville'] = $user['ville'];
