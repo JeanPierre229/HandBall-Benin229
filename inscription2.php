@@ -63,7 +63,7 @@
                                 <input class="form-control" type="text" placeholder="Ex: Parakou" name="ville" id="ville" required>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label"for="age">Age</label>
+                                <label class="form-label"for="age">Père / Mère de:</label>
                                 <input class="form-control" type="text" placeholder="Ex: 17" name="age" id="age" required>
                             </div>
                             <div class="mt-2">

@@ -41,33 +41,38 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="icon" href="images/head-icon.png">
 </head>
+<style>
+    .h-img{
+        height: 90vh;
+    }
+</style>
 <body>
     <section>
         <div class="container mx-auto my-3">
             <div class="row">
-                <div class="col-6">
-                    <img src="images/wax-03.png" alt="Un entraîneur" class="img">
+                <div class="col-lg-6 col-md-6">
+                    <img src="images/ins-parent.png" alt="Un entraîneur" class="img w-100 h-img">
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 justify-content-center my-4">
                     <div>
-                        <h2 class="text-primary">Inscription (2/2)</h2>
+                        <h2 class="text-primary text-md-center">Inscription (2/2)</h2>
                     </div>
                     <div>
                         <form action="inscription2.php" method="post">
                             <div class="mt-2">
-                                <label class="form-label"for="nom_prenoms">Noms et Prénoms</label>
+                                <label class="form-label"for="nom_prenoms">Noms et Prénoms : </label>
                                 <input class="form-control" type="text" placeholder="John Doe" name="nom_prenoms" id="nom_prenoms" required>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label"for="ville">Ville</label>
+                                <label class="form-label"for="ville">Ville : </label>
                                 <input class="form-control" type="text" placeholder="Ex: Parakou" name="ville" id="ville" required>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label"for="age">Age</label>
-                                <input class="form-control" type="text" placeholder="Ex: 17" name="age" id="age" required>
+                                <label class="form-label"for="identite_enfant">Père / Mère de :</label>
+                                <input class="form-control" type="text" placeholder="" name="identite_enfant" id="identite_enfant" required>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label"for="mail">Adresse Email</label>
+                                <label class="form-label"for="mail">Adresse Email : </label>
                                 <input class="form-control" type="text" placeholder="Veuillez entrer votre adresse email" name="mail" id="mail" required>
                                 <?php if($mailError): ?>
                                     <p class="text-danger mt-2">
@@ -76,8 +81,8 @@
                                 <?php endif ?>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label"for="motDePasse">Mot de Passe</label>
-                                <input class="form-control" type="password" placeholder="Votre Mot de Passe" name="motDePasse" id="motDePasse" required>
+                                <label class="form-label"for="motDePasse">Mot de Passe : </label>
+                                <input class="form-control" type="password" placeholder="Créer un mot de passe" name="motDePasse" id="motDePasse" required>
                             </div>
                             <div class="mt-2">
                                 <input type="checkbox" name="check" id="check" checked>
