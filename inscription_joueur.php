@@ -1,4 +1,95 @@
-<?php
+<?php 
+    session_start();
+    $errorUpdate = null;
+    $image = null;
+    $imageErreur = null;
+    if(!empty($_POST) && isset($_POST)){
+        if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+            $image = check($_FILES["photo_profil"]["name"]);
+            $image_path = 'images/img-joueur/' . basename($image);
+            $image_ext = pathinfo($image_path, PATHINFO_EXTENSION);
+            $upload = false;
+
+            // $connect = new PDO('mysql: host=localhost; dbname=bovin_solution', 'root', '');
+            // $requete = $connect->prepare("
+            //                             UPDATE users
+            //                             SET nom_prenoms = ?,
+            //                                 mail = ?,
+            //                                 tel = ?,
+            //                                 profession = ?
+            //                             WHERE id = ?;
+            // ");
+            // $requete->execute(
+            //     array(
+            //         $nom_prenoms, $mail, $tel, $profession, $id
+            //     )
+            // );
+
+            //Gestion de l'image de profil à ajouter par l'utilisateur
+            if($image){
+                $upload = true;
+                $extension = array('jpg', 'png', 'jpeg', 'gif');
+                $image_ext = strtolower(pathinfo($image_path, PATHINFO_EXTENSION));
+        
+                if(!in_array($image_ext, $extension)){
+                    $imageErreur = "Le fichier doit être sous l'un de ces formats: .jpg, .png, .jpeg, et .gif";
+                    $upload = false;
+                }
+        
+                if(file_exists($image_path)){
+                    $imageErreur = "Cette image existe déjà !";
+                    $upload = false;
+                }
+        
+                if($_FILES["fichier"]["size"] > 500000){
+                    $imageErreur = "Le fichier ne doit pas dépasser 500kb";
+                    $upload = false;
+                }
+        
+                $special_char = array("'", "/", "\\", ":", "<", ">");
+                if(preg_match('/[\'\/\\\\:<>\"]/', $image)){
+                    $imageErreur = "Le nom du fichier ne doit pas contenir ces caractères: /, \\, :, < et >";
+                    $upload = false;
+                }
+        
+                if($upload){
+                    if(!move_uploaded_file($_FILES["fichier"]["tmp_name"], $image_path)){
+                        $imageErreur = "Erreur lors du chargement du fichier";
+                        $upload = false;
+                    }
+                }
+        
+                if($upload){
+                    // Insertion dans la base de données seulement si l'upload est réussi
+                    $connect = new PDO("mysql:host=localhost; dbname=bovin_solution", "root", "");
+                    $requete1 = $connect->prepare("
+                            UPDATE users
+                            SET profil = '$image'
+                            WHERE id = '$id';
+                    ");
+                    $requete1->execute();
+                    header("Location: completer_profil.php");
+                }
+            }
+            header('Location: completer_profil.php');
+
+            $connexion = new PDO("mysql: host=localhost; dbname=bovin_solution", "root", "");
+            $requete0 = $connexion->prepare("SELECT * FROM users WHERE id = $id;");
+            $requete0->execute();
+            $row = $requete0->fetch();
+            $_SESSION['profil'] = $row['profil'];
+            $_SESSION['profession'] = $row['profession'];
+        }else{
+            $errorUpdate = "Votre mail n'est pas valide !";
+        }
+    }
+
+    function check($donnee){
+        $donnee = trim($donnee);
+        $donnee = stripslashes($donnee);
+        $donnee = htmlspecialchars($donnee);
+        return $donnee;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,6 +104,25 @@
     <title>Inscription_Joueur(e) - WaxangariLabs</title>
 </head>
 <style>
+    .photo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #000;
+            width: 200px;
+            height: 200px;
+            cursor: pointer; /* Ajout de la propriété pour indiquer que le texte est cliquable */
+            /* overflow: hidden; Empêche le débordement de l'image */
+        }
+        /* Style pour cacher l'input de type file */
+        #fileInput {
+            display: none;
+        }
+        /* Style pour afficher l'image sélectionnée */
+        #selectedImage {
+            max-width: 100%;
+            max-height: 100%;
+        }
     #a:hover{
         text-decoration: none;
         color: black;
@@ -23,7 +133,7 @@
         <h1 class="text-center">FICHE DE DETECTION HANDBALL</h1>
     </header>
     <main>
-        <form action="submit_inscription_joueur.php" method="post">
+        <form action="submit_inscription_joueur.php" method="post" enctype="multipart/form-data">
             <ol type="I">
                 <!-- section I -Identification personnelle- -->
                 <section>
@@ -31,9 +141,17 @@
                         <strong><li>Identification</li></strong>
                     </h3>
                     <div class="row">
-                        <div class="cadre_profil px-4 py-5 m-5">
-                            <a href="" id="a" style="color: black;"><p class="text-center" id="photo">PHOTO 4 * 4</p></a>
-                            <input type="file" name="photo_profil" id="photo_profil" style="display: none;">
+                        <!-- <div class="cadre_profil px-4 py-5 m-5">
+                            <a href="" id="a" style="color: black;"><p class="text-center" id="photo4_4">PHOTO 4 * 4</p></a>
+                            <input type="file" name="photo" id="photo_profil" onchange="previewImage()" style="display: none;">
+                            <img id="imagePreview" src="#" alt="Prévisualisation de l'image" style="display: none; max-width: 100%;">
+                        </div> -->
+                        <div class="photo-container mt-5 mr-5 rounded-5" onclick="document.getElementById('fileInput').click();">
+                            <p id="text">PHOTO 4 * 4</p>
+                            <!-- Input de type file caché -->
+                            <input id="fileInput" type="file" accept="image/*" onchange="chargerImage(event)">
+                            <!-- Affichage de l'image sélectionnée -->
+                            <img id="selectedImage" src="" alt="">
                         </div>
                         <div class="m-2">
                             <div class="row mb-2">
@@ -503,7 +621,7 @@
             <hr class="my-4">
             <!-- le bouton envoyer  -->
             <div class="text-center m-4">
-                <button type="submit" class="btn btn-success w-25 p-2">Envoyer</button>
+                <button type="submit" class="btn btn-primary w-25 p-2">S'inscrire</button>
             </div>
         </form>
     </main>
@@ -511,12 +629,19 @@
 </body>
 </html>
 <script>
-    const before = document.getElementById("nom");
-    before.addEventListener('focus', function(){
-        before.style.borderStyle = 'none';
-    });
 
-    document.getElementById("photo").addEventListener("click", function(){
+    //Cachez l'input de l'image et le déclencher suite à une action
+    document.getElementById("photo4_4").addEventListener("click", function(){
         document.getElementById("photo_profil").click();
     });
+
+    //Charger l'image au moment de la sélection
+    function chargerImage(event) {
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+            // Afficher l'image sélectionnée
+            document.getElementById('selectedImage').src = URL.createObjectURL(selectedFile);
+            document.getElementById("text").style.display = "none";
+        }
+    }
 </script>

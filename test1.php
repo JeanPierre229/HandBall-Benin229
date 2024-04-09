@@ -1,37 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    <style>
+        .photo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #000;
+            width: 200px;
+            height: 200px;
+            cursor: pointer; /* Ajout de la propriété pour indiquer que le texte est cliquable */
+            /* overflow: hidden; Empêche le débordement de l'image */
+        }
+        /* Style pour cacher l'input de type file */
+        #fileInput {
+            display: none;
+        }
+        /* Style pour afficher l'image sélectionnée */
+        #selectedImage {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
 </head>
-<body class="bg-dark">
-    <div id="carouselExampleInterval" class="carousel slide border border-dark" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-            <img src="images/accueil-01.png" class="d-block w-50" alt="...">
-            </div>
-            <div class="carousel-item" data-bs-interval="2000">
-            <img src="images/accueil-02.png" class="d-block w-50" alt="...">
-            </div>
-            <div class="carousel-item">
-            <img src="images/accueil-03.png" class="d-block w-50" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden text-dark bg-primary">Next</span>
-        </button>
+<body>
+    <!-- Balise div avec l'image -->
+    <div class="photo-container" onclick="document.getElementById('fileInput').click();">
+        <p id="text">PHOTO 4 * 4</p>
+        <!-- Input de type file caché -->
+        <input id="fileInput" type="file" accept="image/*" onchange="handleFileSelect(event)">
+        <!-- Affichage de l'image sélectionnée -->
+        <img id="selectedImage" src="" alt="">
     </div>
+
+    <!-- Script pour afficher l'image sélectionnée -->
+    <script>
+        function handleFileSelect(event) {
+            const selectedFile = event.target.files[0];
+            if (selectedFile) {
+                // Afficher l'image sélectionnée
+                document.getElementById('selectedImage').src = URL.createObjectURL(selectedFile);
+                document.getElementById("text").style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-</script>

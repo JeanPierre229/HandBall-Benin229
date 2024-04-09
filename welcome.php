@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAGE ACCEUIL</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">s
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <!-- <link rel="icon" href="images/head-icon.png"> -->
 </head>
@@ -16,10 +16,10 @@
                 <div id="carouselExampleInterval" class="carousel slide col-12 col-lg-6 col-md-6 container-fluid" data-bs-ride="carousel">
                     <div class="carousel-inner w-100">
                         <div class="carousel-item active">
-                            <img src="images/welcome-01.jpeg" class="d-block w-100 img border border-light rounded-2" style="height: 500px;" alt="...">
+                            <img src="images/welcome-01.jpeg" data-bs-interval="1500" class="d-block w-100 img border border-light rounded-2" style="height: 500px;" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/welcome-03.jpeg" class="d-block w-100 img border border-light rounded-2" style="height: 500px;" alt="...">
+                            <img src="images/welcome-03.jpeg" data-bs-interval="500" class="d-block w-100 img border border-light rounded-2" style="height: 500px;" alt="...">
                         </div>
                         <div class="carousel-item">
                             <img src="images/welcome-04.jpeg" class="d-block w-100 img border border-light rounded-2" style="height: 500px;" alt="...">

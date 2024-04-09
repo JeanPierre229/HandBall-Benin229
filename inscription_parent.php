@@ -89,7 +89,7 @@
                                 <span>Restez connecté</span>
                             </div>
                             <div class="mt-2">
-                                <a href="connexion.php" class="text-light"><button class="btn btn-primary form-control">M'inscrire</button></a>
+                                <a href="connexion.php" class="text-light"><button class="btn btn-primary form-control">S'inscrire</button></a>
                             </div>
                         </form>
                     </div>

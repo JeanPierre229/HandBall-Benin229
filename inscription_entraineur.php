@@ -63,8 +63,8 @@
                                 <input class="form-control" type="text" placeholder="Ex: Parakou" name="ville" id="ville" required>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label"for="age">Age</label>
-                                <input class="form-control" type="text" placeholder="Ex: 17" name="age" id="age" required>
+                                <label class="form-label"for="annee_exp">Annee d'Experience</label>
+                                <input class="form-control" type="text" placeholder="Ex: 7ans" name="annee_exp" id="annee_exp" required>
                             </div>
                             <div class="mt-2">
                                 <label class="form-label"for="mail">Adresse Email</label>
