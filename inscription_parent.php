@@ -1,24 +1,31 @@
 <?php
     $mailError = null;
     $nomPrenoms = null;
+    $ville = null;
+    $parent = null;
+    $mail = null;
     $motDePasse = null;
+    $connect = null;
     if(!empty($_POST) && isset($_POST)){
         if(filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)){
             $nomPrenoms = check($_POST['nom_prenoms']);
-            $motDePasse = check($_POST['motDePasse']);
-            $motDePasse = sha1($motDePasse);
+            $ville = check($_POST['ville']);
+            $parent = check($_POST['identite_enfant']);
+            $mail = check($_POST['mail']);
+            $connect = (string)check($_POST['connect']);
+            $motDePasse = sha1(check($_POST['motDePasse']));
 
-            $connect = new PDO('mysql: host=localhost; dbname=handball', 'root',"");
+            $connect = new PDO('mysql: host=localhost; dbname=handball', 'root', '');
             $requete = $connect->prepare("
-                INSERT INTO users(nom_prenoms, ville, age, mail, motDePasse, valcheck)
+                INSERT INTO utilisateur_parent(nom_prenoms, ville, parent_de, email, motDePasse, connect)
                 VALUES(?, ?, ?, ?, ?, ?);
             ");
-            $requete->execute(
-                array(
-                    $nomPrenoms, $_POST['ville'], $_POST['age'], $_POST['mail'], 
-                    $motDePasse, $_POST['check']
-                    )
-            );
+            $requete->execute(array($nomPrenoms,
+             $ville, 
+             $parent,
+              $mail,
+               $motDePasse,
+                $_POST['connect']));
             header("Location: connexion.php");
         }else{
             $mailError = "Votre mail n'est pas valide !";
@@ -58,7 +65,7 @@
                         <h2 class="text-primary text-md-center">Inscription (2/2)</h2>
                     </div>
                     <div>
-                        <form action="inscription2.php" method="post">
+                        <form action="inscription_parent.php" method="post">
                             <div class="mt-2">
                                 <label class="form-label"for="nom_prenoms">Noms et Prénoms : </label>
                                 <input class="form-control" type="text" placeholder="John Doe" name="nom_prenoms" id="nom_prenoms" required>
@@ -85,11 +92,11 @@
                                 <input class="form-control" type="password" placeholder="Créer un mot de passe" name="motDePasse" id="motDePasse" required>
                             </div>
                             <div class="mt-2">
-                                <input type="checkbox" name="check" id="check" checked>
+                                <input type="checkbox" name="connect" id="connect" checked>
                                 <span>Restez connecté</span>
                             </div>
                             <div class="mt-2">
-                                <a href="connexion.php" class="text-light"><button class="btn btn-primary form-control">S'inscrire</button></a>
+                                <button class="btn btn-primary form-control">S'inscrire</button>
                             </div>
                         </form>
                     </div>
