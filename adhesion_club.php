@@ -67,11 +67,11 @@
                         <img src="images/adh-wax-02.jpeg" alt="La main dans la main" class="img w-75 align-self-end">
                     </div>
                 </div>
-                <div class="row mx-auto">
+                <div class="row mx-auto my-4">
                     <div class="col-4">
-                        <img src="images/adh-wax-03.jpeg" alt="La main dans la main" class="img w-50">
+                        <img src="images/adh-wax-03.jpeg" alt="La main dans la main" class="img w-75">
                     </div>
-                    <div class="col-8">
+                    <div class="col-8 my-4">
                         <h3 class="text-center">
                             <strong>Avantage 1</strong>
                         </h3>
@@ -85,8 +85,8 @@
                         </p> 
                     </div>
                 </div>
-                <div class="row mx-auto bg-light">
-                    <div class="col-8">
+                <div class="row mx-auto bg-light my-4">
+                    <div class="col-8 my-4">
                         <h3 class="text-center">
                             <strong>Avantage 2</strong>
                         </h3>
@@ -97,7 +97,7 @@
                         </p> 
                     </div>
                     <div class="col-4">
-                        <img src="images/adh-wax-04.jpeg" alt="La main dans la main" class="img w-50">
+                        <img src="images/adh-wax-04.jpeg" alt="La main dans la main" class="img w-75">
                     </div>
                 </div>
                 <div class="text-center">

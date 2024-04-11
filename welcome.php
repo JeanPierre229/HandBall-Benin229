@@ -9,23 +9,28 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- <link rel="icon" href="images/head-icon.png"> -->
 </head>
+<style>
+    .hauteur{
+        height: 100%vh;
+    }
+</style>
 <body>
     <section>
-        <div class="container mx-auto my-3">
-            <div class="row">
+        <div class="container mx-auto my-4">
+            <div class="row hauteur">
                 <div id="carouselExampleInterval" class="carousel slide col-12 col-lg-6 col-md-6 container-fluid" data-bs-ride="carousel">
                     <div class="carousel-inner w-100">
                         <div class="carousel-item active">
-                            <img src="images/welcome-01.jpeg" data-bs-interval="1500" class="d-block w-100 img border border-light rounded-2" style="height: 500px;" alt="...">
+                            <img src="images/welcome-01.jpeg" data-bs-interval="500" class="d-block w-100 img border border-light rounded-2" style="height: 90vh;" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/welcome-03.jpeg" data-bs-interval="500" class="d-block w-100 img border border-light rounded-2" style="height: 500px;" alt="...">
+                            <img src="images/welcome-03.jpeg" data-bs-interval="500" class="d-block w-100 img border border-light rounded-2" style="height: 90vh;" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/welcome-04.jpeg" class="d-block w-100 img border border-light rounded-2" style="height: 500px;" alt="...">
+                            <img src="images/welcome-04.jpeg" data-bs-interval="500" class="d-block w-100 img border border-light rounded-2" style="height: 90vh;" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/welcome-05.jpeg" class="d-block w-100 img border border-light rounded-2" style="height: 500px;" alt="...">
+                            <img src="images/welcome-05.jpeg" data-bs-interval="500" class="d-block w-100 img border border-light rounded-2" style="height: 90vh;" alt="...">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">

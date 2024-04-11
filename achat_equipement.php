@@ -2,11 +2,11 @@
     // session_start();
     $el = "achat";
     function achat($nm_img, $alt, $titre_img, $prix){
-        echo '<div class="text-center mx-auto">
+        echo '<div class="text-center mx-auto my-2">
                         <img src="' .$nm_img. '" alt="' .$alt. '" class="img w-75">
                         <h5>' .$titre_img. '</h5>
                         <h6>Prix : ' .$prix. ' FCFA</h6>
-                        <button class="btn btn-primary px-5 py-0">Acheter</button>
+                        <button class="btn btn-primary px-5 py-0 rad">Acheter</button>
             </div>';
     }
 ?>
@@ -21,6 +21,11 @@
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="icon" href="images/head-icon.png">
 </head>
+<style>
+    .rad{
+        border-radius: 10px;
+    }
+</style>
 <body>
     <header>
         <?php require "header.php"; ?>

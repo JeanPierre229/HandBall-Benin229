@@ -57,18 +57,26 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="info-joueur py-4 px-5 mt-2 col-11">
+                        <div class="info-joueur pt-2 px-5 mt-2 col-11">
                             <div class="row">
-                                <div class="text-center px-2 col-4">
+                                <div class="text-center col-4">
                                     <h5 class="text-danger" style="font-size: 18px;">Performance</h5>
+                                </div>
+                                <div class="text-center col-4" >
+                                    <h5 class="text-danger" style="font-size: 18px;">Nombre de match gagné</h5>
+                                </div>
+                                <div class="text-center col-4" >
+                                    <h5 class="text-danger" style="font-size: 18px;">Compétence clé</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 text-center ">
                                     <h4 class="mt-5">83%</h4>
                                 </div>
-                                <div class="text-center px-2 col-4" >
-                                    <h5 class="text-danger" style="font-size: 18px;">Nombre de match gagné</h5>
+                                <div class="col-4 text-center ">
                                     <h4 class="mt-5">32</h4>
                                 </div>
-                                <div class="text-center px-2 col-4" >
-                                    <h5 class="text-danger" style="font-size: 18px;">Compétence clé</h5>
+                                <div class="col-4 text-center ">
                                     <h4 class="mt-5">Défence</h4>
                                 </div>
                             </div>
@@ -108,7 +116,7 @@
                         </div>
                         <div>
                             <div class="row info-joueur">
-                                <div class="bg-light m-3 p-3 info-joueur text-center">
+                                <div class="bg-light m-2 p-3 info-joueur text-center">
                                     <i class="fa fa-trophy" style="font-size: 30px;"></i>
                                 </div>
                                 <div class="">
@@ -144,7 +152,7 @@
                         </div>
                         <div>
                             <div class="row info-joueur">
-                                <div class="bg-light m-3 p-3 info-joueur text-center">
+                                <div class="bg-light m-2 p-3 info-joueur text-center">
                                     <i class="fa fa-trophy" style="font-size: 30px;"></i>
                                 </div>
                                 <div class="">
