@@ -14,9 +14,9 @@
         $requete->execute(array($mail, $mp));
         $utilisateur_parent = $requete->fetch();
 
-        // $requete1 = $connect->prepare("SELECT * FROM utilisateurs_joueurs WHERE mail = ? AND motDePasse = ?;");
-        // $requete1->execute(array($_POST['mail'], $_POST['motDePasse']));
-        // $utilisateur_joueur = $requete1->fetch();
+        $requete1 = $connect->prepare("SELECT * FROM utilisateurs_joueurs WHERE mail = ? AND motDePasse = ?;");
+        $requete1->execute(array($mail, $mp));
+        $utilisateur_joueur = $requete1->fetch();
 
         $requete2 = $connect->prepare("SELECT * FROM utilisateur_entraineur WHERE mail = ? AND motDePasse = ?;");
         $requete2->execute(array($mail, $mp));
@@ -26,6 +26,12 @@
                 $_SESSION['nom_prenoms'] = $utilisateur_parent['nom_prenoms'];
                 $_SESSION['mail'] = $utilisateur_parent['mail'];
                 $_SESSION['ville'] = $utilisateur_parent['ville'];
+                header("Location: accueil.php");
+            }elseif($requete1->rowCount() > 0){
+                $_SESSION['profil'] = $utilisateur_joueur['profil'];
+                $_SESSION['nom_prenoms'] = $utilisateur_joueur['nom_prenoms'];
+                $_SESSION['mail'] = $utilisateur_joueur['mail'];
+                $_SESSION['ville'] = $utilisateur_joueur['ville'];
                 header("Location: accueil.php");
             }elseif($requete2->rowCount() > 0){
                 $_SESSION['nom_prenoms'] = $utilisateur_entraineur['nom_prenoms'];
@@ -58,7 +64,7 @@
                     <img src="images/wax-04.png" alt="Un joueur de handball" class="img">
                 </div>
                 <div class="col-6 mt-5">
-                    <form action="test.php" method="post">
+                    <form action="connexion.php" method="post">
                         <legend class="text-center text-primary">Connexion</legend>
                         <div class="mt-2">
                             <?php if($id_error): ?>

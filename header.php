@@ -9,11 +9,10 @@
         justify-content: space-between;
     }
     #profil{
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         border: px solid #fff;
-        /* background-image: url("images/wax-person-04.png"); */
     }
     a[alt^='el_a']{
         text-decoration: none;
@@ -38,12 +37,18 @@
             </div>
             <div class="mx-5 mt-3 text-right col-7">
                 <span class="container text-right">
-                    <i class="fa fa-bell-o px-1" style="font-size: 20px;"></i>
-                    <i class="fa fa-comment-o px-1" style="font-size: 20px;"></i>
+                    <i class="fa fa-bell-o px-1" style="font-size: 25px;"></i>
+                    <i class="fa fa-comment-o px-1" style="font-size: 25px;"></i>
                 </span>
-                <span class="container text-right px-2">
-                        <img src="images/profil-header.jpg" alt="" class="img" id="profil">
-                </span>
+                <?php if(!empty($_SESSION['profil']) && isset($_SESSION['profil'])){ ?>
+                    <span class="container text-right px-2">
+                            <img src="images/img-joueur/<?=$_SESSION['profil']?>" alt="" class="img" id="profil">
+                    </span>
+                <?php }else{ ?>
+                    <span class="container text-right px-2">
+                            <i class="fa fa-user" style="font-size: 30px;"></i>
+                    </span>
+                <?php } ?>
                 <span>
                     HandBall
                     <i class="fa fa-angle-down px-1" style="font-size: 20px;"></i>

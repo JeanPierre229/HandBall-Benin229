@@ -19,92 +19,108 @@
     $force = null;
     $vitesse = null;
     $endurance = null;
-    $sargent_test = $tir = $dribble = $feinte = $participe = null;
+    $sargent_test = $tir = $dribble = $feinte = $participe = $mail = $motDePasse = $connecte = null;
     $tir_face_gardien = $passe = $tir_decision = $monte_repli = null;   
     $errorUpdate = null;
     $imageErreur = null;
     if(!empty($_POST) && isset($_POST)){
-        if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-            $nom = $_POST['nom'];
-            $prenoms = $_POST['prenoms'];
-            $date_naissance = $_POST['date_naissance'];
-            $lieu_naissance = $_POST['lieu_naissance'];
-            $genre = $_POST['genre'];
-            $ref_cip = $_POST['ref_cip'];
-            $contact_parent = $_POST['contact_parent'];
-            $taille = $_POST['taille'];
-            $poids = $_POST['poids'];
-            $hauteur_poids = $_POST['hauteur_poids'];
-            $imc = $_POST['imc'];
-            $empan = $_POST['empan'];
-            $envergure = $_POST['envergure'];
-            $pointure = $_POST['pointure'];
-            $lateralite = $_POST['lateralite'];
-            $force = $_POST['force'];
-            $vitesse = $_POST['vitesse'];
-            $endurance = $_POST['endurance'];
-            $sargent_test = $_POST['sargent_test'];
-            $tir = $_POST['tir'];
-            $dribble = $_POST['dribble'];
-            $feinte = $_POST['feinte'];
-            $participe = $_POST['participe'];
-            $tir_face_gardien = $_POST['tir_face_gardien'];
-            $passe = $_POST['passe'];
-            $tir_decision = $_POST['tir_decision'];
-            $monte_repli = $_POST['monte_repli'];
+        $nom = $_POST['nom'];
+        $prenoms = $_POST['prenoms'];
+        $date_naissance = $_POST['date_naissance'];
+        $lieu_naissance = $_POST['lieu_naissance'];
+        $genre = $_POST['genre'];
+        $ref_cip = $_POST['ref_cip'];
+        $contact_parent = $_POST['contact_parent'];
+        $taille = $_POST['taille'];
+        $poids = $_POST['poids'];
+        $hauteur_poids = $_POST['hauteur_poids'];
+        $imc = $_POST['imc'];
+        $empan = $_POST['empan'];
+        $envergure = $_POST['envergure'];
+        $pointure = $_POST['pointure'];
+        $lateralite = $_POST['lateralite'];
+        $force = $_POST['force'];
+        $vitesse = $_POST['vitesse'];
+        $endurance = $_POST['endurance'];
+        $sargent_test = $_POST['sargent_test'];
+        $tir = $_POST['tir'];
+        $dribble = $_POST['dribble'];
+        $feinte = $_POST['feinte'];
+        $participe = $_POST['participe'];
+        $tir_face_gardien = $_POST['tir_face_gardien'];
+        $passe = $_POST['passe'];
+        $tir_decision = $_POST['tir_decision'];
+        $monte_repli = $_POST['monte_repli'];
+        $mail = $_POST['mail'];
+        $motDePasse = sha1($_POST['motDePasse']);
+        $connecte = $_POST['connect'];
 
-            //Partie réservé au traitement de l'image à envoyer
-            $image = check($_FILES["photo_profil"]["name"]);
-            $image_path = 'images/img-joueur/' . basename($image);
-            $image_ext = pathinfo($image_path, PATHINFO_EXTENSION);
-            $upload = false;
+        //Partie réservé au traitement de l'image à envoyer
+        $image = check($_FILES["photo_profil"]["name"]);
+        $image_path = 'images/img-joueur/' . basename($image);
+        $image_ext = pathinfo($image_path, PATHINFO_EXTENSION);
+        $upload = false;
 
-            if($image){
-                $upload = true;
-                $extension = array('jpg', 'png', 'jpeg', 'gif');
-                $image_ext = strtolower(pathinfo($image_path, PATHINFO_EXTENSION));
-        
-                if(!in_array($image_ext, $extension)){
-                    $imageErreur = "Le fichier doit être sous l'un de ces formats: .jpg, .png, .jpeg, et .gif";
+        if($image){
+            $upload = true;
+            $extension = array('jpg', 'png', 'jpeg', 'gif');
+            $image_ext = strtolower(pathinfo($image_path, PATHINFO_EXTENSION));
+    
+            if(!in_array($image_ext, $extension)){
+                $imageErreur = "Le fichier doit être sous l'un de ces formats: .jpg, .png, .jpeg, et .gif";
+                $upload = false;
+            }
+    
+            if(file_exists($image_path)){
+                $imageErreur = "Cette image existe déjà !";
+                $upload = false;
+            }
+    
+            if($_FILES["photo_profil"]["size"] > 500000){
+                $imageErreur = "Le fichier ne doit pas dépasser 500kb";
+                $upload = false;
+            }
+    
+            $special_char = array("'", "/", "\\", ":", "<", ">");
+            if(preg_match('/[\'\/\\\\:<>\"]/', $image)){
+                $imageErreur = "Le nom du fichier ne doit pas contenir ces caractères: /, \\, :, < et >";
+                $upload = false;
+            }
+    
+            if($upload){
+                if(!move_uploaded_file($_FILES["photo_profil"]["tmp_name"], $image_path)){
+                    $imageErreur = "Erreur lors du chargement du fichier";
                     $upload = false;
-                }
-        
-                if(file_exists($image_path)){
-                    $imageErreur = "Cette image existe déjà !";
-                    $upload = false;
-                }
-        
-                if($_FILES["fichier"]["size"] > 500000){
-                    $imageErreur = "Le fichier ne doit pas dépasser 500kb";
-                    $upload = false;
-                }
-        
-                $special_char = array("'", "/", "\\", ":", "<", ">");
-                if(preg_match('/[\'\/\\\\:<>\"]/', $image)){
-                    $imageErreur = "Le nom du fichier ne doit pas contenir ces caractères: /, \\, :, < et >";
-                    $upload = false;
-                }
-        
-                if($upload){
-                    if(!move_uploaded_file($_FILES["fichier"]["tmp_name"], $image_path)){
-                        $imageErreur = "Erreur lors du chargement du fichier";
-                        $upload = false;
-                    }
-                }
-        
-                if($upload){
-                    // Insertion dans la base de données seulement si l'upload est réussi
-                    $connect = new PDO("mysql:host=localhost; dbname=handball", "root", "");
-                    $requete1 = $connect->prepare("
-                            INSERT INTO utilisateur_joueur(image-profil, nom, prenoms, date_naissance, lieu_naissance,sexe, ref_cip, contact_parent, taille, poids, imc, empan, envergure, pointure, lateralite, force_physique, vitesse, endurance, test_detente, tir, dribble, feinte, adaptation_jeu, tir_gardien, passe, tir_decision, montee)
-                            VALUES('$image', '$nom', '$prenoms', '$date_naissance', '$lieu_naissance', '$genre', '$ref_cip', '$contact_parent', '$taille', '$poids', '$imc', '$empan', '$envergure', '$pointure', '$lateralite', '$force', '$vitesse', '$endurance', '$sargent_test', '$tir', '$dribble', '$feinte', '$participe', '$tir_gardien', '$passe', '$tir_decision', '$monte');
-                    ");
-                    $requete1->execute();
-                    header("Location: accueil.php");
                 }
             }
-        }else{
-            $errorUpdate = "Votre mail n'est pas valide !";
+    
+            if($upload){
+                // Insertion dans la base de données seulement si l'upload est réussi
+                $connect = new PDO("mysql:host=localhost; dbname=handball", "root", "");
+                $requete1 = $connect->prepare("
+                        INSERT INTO utilisateurs_joueurs
+                                    (profil, nom, prenoms, date_naissance, 
+                                    lieu_naissance, sexe, ref_cip, contact_parent, 
+                                    taille, poids, hauteur_poids, imc, empan, 
+                                    envergure, pointure, lateralite, force_physique, 
+                                    vitesse, endurance, test_detente, tir, dribble, 
+                                    feinte, adaptation_jeu, tir_gardien, passe, 
+                                    tir_decision, montee, mail, motDePasse, connect)
+                        VALUES('$image', '$nom', '$prenoms', 
+                                    '$date_naissance', '$lieu_naissance', 
+                                    '$genre', '$ref_cip', '$contact_parent', 
+                                    '$taille', '$poids', '$hauteur_poids', 
+                                    '$imc', '$empan', '$envergure', '$pointure', 
+                                    '$lateralite', '$force', '$vitesse', '$endurance', 
+                                    '$sargent_test', '$tir', '$dribble', '$feinte', 
+                                    '$participe', '$tir_face_gardien', '$passe', 
+                                    '$tir_decision', '$monte_repli', '$mail', '$motDePasse', '$connecte');
+                ");
+                $requete1->execute();
+                header("Location: accueil.php");
+
+                //$_SESSION['profil'] = $image;
+            }
         }
     }
 
@@ -157,7 +173,7 @@
         <h1 class="text-center">FICHE DE DETECTION HANDBALL</h1>
     </header>
     <main>
-        <form action="submit_inscription_joueur.php" method="post" enctype="multipart/form-data">
+        <form action="inscription_joueur.php" method="post" enctype="multipart/form-data">
             <ol type="I">
                 <!-- section I -Identification personnelle- -->
                 <section>
@@ -168,7 +184,7 @@
                         <div class="photo-container mt-5 mr-5 rounded-5" onclick="document.getElementById('fileInput').click();">
                             <p id="text">PHOTO 4 * 4</p>
                             <!-- Input de type file caché -->
-                            <input id="fileInput" type="file" accept="image/*" onchange="chargerImage(event)">
+                            <input id="fileInput" type="file" name="photo_profil" accept="image/*" onchange="chargerImage(event)">
                             <!-- Affichage de l'image sélectionnée -->
                             <img id="selectedImage" src="" alt="">
                         </div>
@@ -472,19 +488,19 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-2"><li>Fente :</li></div>
+                            <div class="col-2"><li>Feinte :</li></div>
                             <div class="col-4">Situation de 1 # 1 :</div>
                             <div class="col-2">
                                 <label for="fente_moyen" class="form-label">Moyen : </label>
-                                <input type="radio" name="fente" id="fente_moyen" value="fente_moyen">
+                                <input type="radio" name="feinte" id="fente_moyen" value="feinte_moyen">
                             </div>
                             <div class="col-2">
                                 <label for="fente_bon" class="form-label">Bon : </label>
-                                <input type="radio" name="fente" id="fente_bon" value="fente_bon">
+                                <input type="radio" name="feinte" id="fente_bon" value="feinte_bon">
                             </div>
                             <div class="col-2">
                                 <label for="fente_tres_bon" class="form-label">Très bon : </label>
-                                <input type="radio" name="fente" id="fente_tres_bon" value="fente_tres_bon">
+                                <input type="radio" name="feinte" id="fente_tres_bon" value="feinte_tres_bon">
                             </div>
                         </div>
                     </ol>
@@ -633,6 +649,23 @@
                             </tr>
                         </table>
                     </ol>
+                </section>
+                <section>
+                    <h3 class="text-start mt-3">
+                        <strong><li>Information de connexion: </li></strong>
+                    </h3>
+                    <div class="mt-3">
+                        <label for="mail" class="form-label"><strong>Votre mail: </strong></label>
+                        <input type="email" class="form-control" name="mail" id="mail" placeholder="john.doe@gmail.com" required>
+                    </div>
+                    <div class="mt-3">
+                        <label for="motDePasse" class="form-label"><strong>Votre mot de passe: </strong></label>
+                        <input type="password" class="form-control" name="motDePasse" id="motDePasse" placeholder="Ex: *****" required>
+                    </div>
+                    <div class="mt-3">
+                        <input type="checkbox" name="connect" id="connect">
+                        <label for="connect" class="form-label"><strong>Restez connecté</strong></label>
+                    </div>
                 </section>
             </ol>
             

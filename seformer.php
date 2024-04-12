@@ -1,5 +1,5 @@
 <?php
-    // session_start();
+    session_start();
     $el = "seformer";
     function view_img($img, $txt, $url_video, $duree = 10){
         echo '<div class="px-1 py-3 mx-3" id="person" style="width: 450px;">

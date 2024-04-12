@@ -1,5 +1,5 @@
 <?php
-    // session_start();
+    session_start();
     $el = "nos_joueurs";
     function information($icon, $txt, $description){
         echo '<div class="col-2 ml-5 py-1 info-joueur">
@@ -43,7 +43,11 @@
             <div class="col-10">
                 <div class="row">
                     <div class="col-3">
-                        <img src="images/wax-03.png" alt="Une personne" class="img mt-2" id="img-traite">
+                        <?php if(!empty($_SESSION['profil']) && isset($_SESSION['profil'])){ ?>
+                            <img src="images/img-joueur/<?=$_SESSION['profil']?>" alt="Une personne" class="img mt-2" id="img-traite">
+                        <?php }else{ ?>
+                            <i class="fa fa-user" style="font-size: 250px;"></i>
+                        <?php } ?>
                     </div>
                     <div class="col-8">
                         <h4>Ousmane Traoré</h4>

@@ -1,5 +1,5 @@
 <?php
-    // session_start();
+    session_start();
     $el = "achat";
     function achat($nm_img, $alt, $titre_img, $prix){
         echo '<div class="text-center mx-auto my-2">
