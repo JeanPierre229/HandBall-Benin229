@@ -3,10 +3,12 @@
     $el = "achat";
     function achat($nm_img, $alt, $titre_img, $prix){
         echo '<div class="text-center mx-auto my-2">
+                <form action="achat_equipement.php" method="post" class="formulaire">
                         <img src="' .$nm_img. '" alt="' .$alt. '" class="img w-75">
                         <h5>' .$titre_img. '</h5>
                         <h6>Prix : ' .$prix. ' FCFA</h6>
                         <button class="btn btn-primary px-5 py-0 rad">Acheter</button>
+                </form>
             </div>';
     }
 ?>
@@ -20,8 +22,21 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="icon" href="images/head-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&famil
+    y=Reem+Kufi+Fun:wght@400..700&display=swap" 
+    rel="stylesheet">
+    <script src="https://cdn.kkiapay.me/k.js"></script>
 </head>
 <style>
+    *{
+        font-size: 15px;
+        font-family: "Outfit", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+    }
     .rad{
         border-radius: 10px;
     }
@@ -35,22 +50,91 @@
         <?php require "aside.php"; ?>
             <div class="col-10">
                 <h2 class="text-center">
-                    <strong>Achat d'équipement sportif pour le HandBall</strong>
+                    Achat d'équipement sportif pour le HandBall
                 </h2>
                 <div class="row px-3 mx-3 my-3">
-                    <?php achat("images/ballon-handball.png", "Un ballon de HandBall", "Ballon de HandBall", 7000); ?>
+                    <div class="text-center mx-auto my-2">
+                        <form action="achat_equipement.php" method="post" class="formulaire">
+                                <img src="images/ballon-handball.png" alt="Un ballon de HandBall" class="img w-75">
+                                <h5 class="text-primary">Ballon de HandBall</h5>
+                                <h6>Prix : 7000 FCFA</h6>
+                                <input type="number" name="montant" id="montant" style="display: none;" value="7000">
+                                <button class="btn btn-primary px-5 py-0 rad">Acheter</button>
+                        </form>
+                    </div>
                     <span class="mx-3"></span>
-                    <?php achat("images/maillot.png", "Un maillots", "Maillots", 3000); ?>
-                    <?php achat("images/chaussure.png", "Une chaussure de handball", "Chaussure handball", 5000); ?>
+                    <div class="text-center mx-auto my-2">
+                        <form action="achat_equipement.php" method="post" class="formulaire1">
+                                <img src="images/maillot.png" alt="Un maillots" class="img w-75">
+                                <h5 class="text-primary">Maillots</h5>
+                                <h6>Prix : 3000 FCFA</h6>
+                                <input type="number" name="montant" id="montant" style="display: none;" value="3000">
+                                <button class="btn btn-primary px-5 py-0 rad">Acheter</button>
+                        </form>
+                    </div>
+                    <div class="text-center mx-auto my-2">
+                        <form action="achat_equipement.php" method="post" class="formulaire2">
+                                <img src="images/chaussure.png" alt="Une chaussure de handball" class="img w-75">
+                                <h5 class="text-primary">Chaussure handball</h5>
+                                <h6>Prix : 5000 FCFA</h6>
+                                <input type="number" name="montant" id="montant" style="display: none;" value="5000">
+                                <button class="btn btn-primary px-5 py-0 rad">Acheter</button>
+                        </form>
+                    </div>
                 </div>
                 <div class="row px-3 mx-3 my-3">
-                    <?php achat("images/protege.png", "Un protège tibia", "Protège Tibia", 7000); ?>
+                    <div class="text-center mx-auto my-2">
+                        <form action="achat_equipement.php" method="post" class="formulaire3">
+                                <img src="images/protege.png" alt="Un protège tibia" class="img w-75">
+                                <h5 class="text-primary">Protège Tibia</h5>
+                                <h6>Prix : 7000 FCFA</h6>
+                                <input type="number" name="montant" id="montant" style="display: none;" value="5000">
+                                <button class="btn btn-primary px-5 py-0 rad">Acheter</button>
+                        </form>
+                    </div>
                     <span class="mx-3"></span>
-                    <?php achat("images/poignet.png", "Une bande de poignet", "Bande poignet", 7000); ?>
-                    <?php achat("images/genou.png", "Une genouillère", "Genouillère", 7000); ?>
+                    <div class="text-center mx-auto my-2">
+                        <form action="achat_equipement.php" method="post" class="formulaire4">
+                                <img src="images/poignet.png" alt="Une bande de poignet" class="img w-75">
+                                <h5 class="text-primary">Bande poignet</h5>
+                                <h6>Prix : 7000 FCFA</h6>
+                                <input type="number" name="montant" id="montant" style="display: none;" value="7000">
+                                <button class="btn btn-primary px-5 py-0 rad">Acheter</button>
+                        </form>
+                    </div>
+                    <div class="text-center mx-auto my-2">
+                        <form action="achat_equipement.php" method="post" class="formulaire5">
+                                <img src="images/genou.png" alt="Une genouillère" class="img w-75">
+                                <h5 class="text-primary">Genouillère</h5>
+                                <h6>Prix : 7000 FCFA</h6>
+                                <input type="number" name="montant" id="montant" style="display: none;" value="7000">
+                                <button class="btn btn-primary px-5 py-0 rad">Acheter</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 </body>
 </html>
+<script>
+    function payer(classe, prix){
+        var classe = document.querySelector("."+classe+"");
+
+        classe.onsubmit=(e)=>{
+            e.preventDefault();
+            openKkiapayWidget({amount:classe.montant.value, position: "right", callback: "/success", 
+            data: "Test de paiement",
+            theme: "#092374",
+            sandbox: "true",
+            key: "ea194080f5a011ee9f805f907fefa779"
+            })
+        }
+    }
+    payer("formulaire", 7000);
+    payer("formulaire1", 3000);
+    payer("formulaire2", 5000);
+    payer("formulaire3", 7000);
+    payer("formulaire4", 7000);
+    payer("formulaire5", 7000);
+</script>

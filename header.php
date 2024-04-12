@@ -30,11 +30,11 @@
 <section class="container mx-auto">
     <div class="col-12 mx-5" id="h-bar">
         <div class="row">
-            <div class="row border px-3 mt-3 me-5 col-4 text-start" id="bar">
+            <div class="row border px-3 mt-3 col-4 text-start" id="bar">
                 <form action="#" method="post">
                     <input type="text" size="30%" name="search" id="search" placeholder="Rechercher un club de HandBall" class="fa fa-search py-2">
                 </form>
-                <span><i class="fa fa-search py-2"></i></span>
+                <span><i class="fa fa-search py-2 text-end"></i></span>
             </div>
             <div class="mx-5 mt-3 text-right col-7">
                 <span class="container text-right">

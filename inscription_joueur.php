@@ -1,31 +1,64 @@
 <?php 
     session_start();
-    $errorUpdate = null;
     $image = null;
+    $nom = null;
+    $prenoms = null;
+    $date_naissance = null;
+    $lieu_naissance = null;
+    $genre = null;
+    $ref_cip = null;
+    $contact_parent = null;
+    $taille = null;
+    $poids = null;
+    $hauteur_poids = null;
+    $imc = null;
+    $empan = null;
+    $envergure = null;
+    $pointure = null;
+    $lateralite = null;
+    $force = null;
+    $vitesse = null;
+    $endurance = null;
+    $sargent_test = $tir = $dribble = $feinte = $participe = null;
+    $tir_face_gardien = $passe = $tir_decision = $monte_repli = null;   
+    $errorUpdate = null;
     $imageErreur = null;
     if(!empty($_POST) && isset($_POST)){
         if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+            $nom = $_POST['nom'];
+            $prenoms = $_POST['prenoms'];
+            $date_naissance = $_POST['date_naissance'];
+            $lieu_naissance = $_POST['lieu_naissance'];
+            $genre = $_POST['genre'];
+            $ref_cip = $_POST['ref_cip'];
+            $contact_parent = $_POST['contact_parent'];
+            $taille = $_POST['taille'];
+            $poids = $_POST['poids'];
+            $hauteur_poids = $_POST['hauteur_poids'];
+            $imc = $_POST['imc'];
+            $empan = $_POST['empan'];
+            $envergure = $_POST['envergure'];
+            $pointure = $_POST['pointure'];
+            $lateralite = $_POST['lateralite'];
+            $force = $_POST['force'];
+            $vitesse = $_POST['vitesse'];
+            $endurance = $_POST['endurance'];
+            $sargent_test = $_POST['sargent_test'];
+            $tir = $_POST['tir'];
+            $dribble = $_POST['dribble'];
+            $feinte = $_POST['feinte'];
+            $participe = $_POST['participe'];
+            $tir_face_gardien = $_POST['tir_face_gardien'];
+            $passe = $_POST['passe'];
+            $tir_decision = $_POST['tir_decision'];
+            $monte_repli = $_POST['monte_repli'];
+
+            //Partie réservé au traitement de l'image à envoyer
             $image = check($_FILES["photo_profil"]["name"]);
             $image_path = 'images/img-joueur/' . basename($image);
             $image_ext = pathinfo($image_path, PATHINFO_EXTENSION);
             $upload = false;
 
-            // $connect = new PDO('mysql: host=localhost; dbname=bovin_solution', 'root', '');
-            // $requete = $connect->prepare("
-            //                             UPDATE users
-            //                             SET nom_prenoms = ?,
-            //                                 mail = ?,
-            //                                 tel = ?,
-            //                                 profession = ?
-            //                             WHERE id = ?;
-            // ");
-            // $requete->execute(
-            //     array(
-            //         $nom_prenoms, $mail, $tel, $profession, $id
-            //     )
-            // );
-
-            //Gestion de l'image de profil à ajouter par l'utilisateur
             if($image){
                 $upload = true;
                 $extension = array('jpg', 'png', 'jpeg', 'gif');
@@ -61,24 +94,15 @@
         
                 if($upload){
                     // Insertion dans la base de données seulement si l'upload est réussi
-                    $connect = new PDO("mysql:host=localhost; dbname=bovin_solution", "root", "");
+                    $connect = new PDO("mysql:host=localhost; dbname=handball", "root", "");
                     $requete1 = $connect->prepare("
-                            UPDATE users
-                            SET profil = '$image'
-                            WHERE id = '$id';
+                            INSERT INTO utilisateur_joueur(image-profil, nom, prenoms, date_naissance, lieu_naissance,sexe, ref_cip, contact_parent, taille, poids, imc, empan, envergure, pointure, lateralite, force_physique, vitesse, endurance, test_detente, tir, dribble, feinte, adaptation_jeu, tir_gardien, passe, tir_decision, montee)
+                            VALUES('$image', '$nom', '$prenoms', '$date_naissance', '$lieu_naissance', '$genre', '$ref_cip', '$contact_parent', '$taille', '$poids', '$imc', '$empan', '$envergure', '$pointure', '$lateralite', '$force', '$vitesse', '$endurance', '$sargent_test', '$tir', '$dribble', '$feinte', '$participe', '$tir_gardien', '$passe', '$tir_decision', '$monte');
                     ");
                     $requete1->execute();
-                    header("Location: completer_profil.php");
+                    header("Location: accueil.php");
                 }
             }
-            header('Location: completer_profil.php');
-
-            $connexion = new PDO("mysql: host=localhost; dbname=bovin_solution", "root", "");
-            $requete0 = $connexion->prepare("SELECT * FROM users WHERE id = $id;");
-            $requete0->execute();
-            $row = $requete0->fetch();
-            $_SESSION['profil'] = $row['profil'];
-            $_SESSION['profession'] = $row['profession'];
         }else{
             $errorUpdate = "Votre mail n'est pas valide !";
         }
@@ -141,11 +165,6 @@
                         <strong><li>Identification</li></strong>
                     </h3>
                     <div class="row">
-                        <!-- <div class="cadre_profil px-4 py-5 m-5">
-                            <a href="" id="a" style="color: black;"><p class="text-center" id="photo4_4">PHOTO 4 * 4</p></a>
-                            <input type="file" name="photo" id="photo_profil" onchange="previewImage()" style="display: none;">
-                            <img id="imagePreview" src="#" alt="Prévisualisation de l'image" style="display: none; max-width: 100%;">
-                        </div> -->
                         <div class="photo-container mt-5 mr-5 rounded-5" onclick="document.getElementById('fileInput').click();">
                             <p id="text">PHOTO 4 * 4</p>
                             <!-- Input de type file caché -->
@@ -193,13 +212,13 @@
                                         <div class="col-4 text-start mx-3">
                                             <span>
                                                 <label for="masculin" class="form-label">Masculin : </label>
-                                                <input type="radio" name="genre" id="masculin">
+                                                <input type="radio" name="genre" id="masculin" value="masculin">
                                             </span>
                                         </div>
                                         <div class="col-4 text-center mx-3">
                                             <span>
                                                 <label for="feminin" class="form-label">Feminin : </label>
-                                                <input type="radio" name="genre" id="feminin">
+                                                <input type="radio" name="genre" id="feminin" value="feminin">
                                             </span>
                                         </div>
                                     </div>
@@ -303,19 +322,19 @@
                                     <div class="col-3 text-center mx-3">
                                         <span>
                                             <label for="gaucher" class="form-label">Gaucher : </label>
-                                            <input type="radio" name="lateralite" id="gaucher">
+                                            <input type="radio" name="lateralite" id="gaucher" value="gaucher">
                                         </span>
                                     </div>
                                     <div class="col-2 text-center mx-3">
                                         <span>
                                             <label for="droitier" class="form-label">Droitier : </label>
-                                            <input type="radio" name="lateralite" id="droitier">
+                                            <input type="radio" name="lateralite" id="droitier" value="droitier">
                                         </span>
                                     </div>
                                     <div class="col-3 text-start mx-3">
                                         <span>
                                             <label for="ambidextre" class="form-label">Ambidextre : </label>
-                                            <input type="radio" name="lateralite" id="ambidextre">
+                                            <input type="radio" name="lateralite" id="ambidextre" value="ambidextre">
                                         </span>
                                     </div>
                                 </div>
@@ -341,13 +360,13 @@
                                 <div class="col-2 text-center mx-3 d-inline">
                                     <span>
                                         <label for="pompe" class="form-label">Pompe : </label>
-                                        <input type="radio" name="force" id="pompe">
+                                        <input type="radio" name="force" id="pompe" value="pompe">
                                     </span>
                                 </div>
                                 <div class="col-2 text-start mx-3 d-inline">
                                     <span>
                                         <label for="grimpe" class="form-label">Grimpé à la corde : </label>
-                                        <input type="radio" name="force" id="grimpe">
+                                        <input type="radio" name="force" id="grimpe" value="grimpe">
                                     </span>
                                 </div>
                             </div>
@@ -363,13 +382,13 @@
                                 <div class="col-2 text-center mx-3 d-inline">
                                     <span>
                                         <label for="vitesse_reaction" class="form-label">5m -> vitesse de réaction : </label>
-                                        <input type="radio" name="vitesse" id="vitesse_reaction">
+                                        <input type="radio" name="vitesse" id="vitesse_reaction" value="vitesse_reaction">
                                     </span>
                                 </div>
                                 <div class="col-2 text-start mx-3 d-inline">
                                     <span>
                                         <label for="vitesse_acceleration" class="form-label">20m -> vitesse d'accélération : </label>
-                                        <input type="radio" name="vitesse" id="vitesse_acceleration">
+                                        <input type="radio" name="vitesse" id="vitesse_acceleration" value="vitesse_acceleration">
                                     </span>
                                 </div>
                             </div>
@@ -382,19 +401,19 @@
                                 <div class="col-2 text-center d-inline">
                                     <span>
                                         <label for="course_navette" class="form-label">Course navette jouée : </label>
-                                        <input type="radio" name="endurance" id="course_navette">
+                                        <input type="radio" name="endurance" id="course_navette" value="course_navette">
                                     </span>
                                 </div>
                                 <div class="col-2 text-center mx-3 d-inline">
                                     <span>
                                         <label for="trente_quinze" class="form-label">30 - 15 (m) : </label>
-                                        <input type="radio" name="endurance" id="trente_quinze">
+                                        <input type="radio" name="endurance" id="trente_quinze" value="trente_quinze">
                                     </span>
                                 </div>
                                 <div class="col-2 text-start mx-3 d-inline">
                                     <span>
                                         <label for="test_yoyo" class="form-label">Test de Yoyo : </label>
-                                        <input type="radio" name="endurance" id="test_yoyo">
+                                        <input type="radio" name="endurance" id="test_yoyo" value="test_yoyo">
                                     </span>
                                 </div>
                             </div>
@@ -425,15 +444,15 @@
                             <div class="col-4">Tir sur cible(fixe/mobile) : </div>
                             <div class="col-2">
                                 <label for="tir_moyen" class="form-label">Moyen : </label>
-                                <input type="radio" name="tir" id="tir_moyen">
+                                <input type="radio" name="tir" id="tir_moyen" value="tir_moyen">
                             </div>
                             <div class="col-2">
                                 <label for="tir_bon" class="form-label">Bon : </label>
-                                <input type="radio" name="tir" id="tir_bon">
+                                <input type="radio" name="tir" id="tir_bon" value="tir_bon">
                             </div>
                             <div class="col-2">
                                 <label for="tir_tres_bon" class="form-label">Très bon : </label>
-                                <input type="radio" name="tir" id="tir_tres_bon">
+                                <input type="radio" name="tir" id="tir_tres_bon" value="tir_tres_bon">
                             </div>
                         </div> 
                         <div class="row">
@@ -441,15 +460,15 @@
                             <div class="col-4">Slalom linéaire : </div>
                             <div class="col-2">
                                 <label for="dribble_moyen" class="form-label">Moyen : </label>
-                                <input type="radio" name="dribble" id="dribble_moyen">
+                                <input type="radio" name="dribble" id="dribble_moyen" value="dribble_moyen">
                             </div>
                             <div class="col-2">
                                 <label for="dribble_bon" class="form-label">Bon : </label>
-                                <input type="radio" name="dribble" id="dribble_bon">
+                                <input type="radio" name="dribble" id="dribble_bon" value="dribble_bon">
                             </div>
                             <div class="col-2">
                                 <label for="dribble_tres_bon" class="form-label">Très bon : </label>
-                                <input type="radio" name="dribble" id="dribble_tres_bon">
+                                <input type="radio" name="dribble" id="dribble_tres_bon" value="dribble_tres_bon">
                             </div>
                         </div>
                         <div class="row">
@@ -457,15 +476,15 @@
                             <div class="col-4">Situation de 1 # 1 :</div>
                             <div class="col-2">
                                 <label for="fente_moyen" class="form-label">Moyen : </label>
-                                <input type="radio" name="fente" id="fente_moyen">
+                                <input type="radio" name="fente" id="fente_moyen" value="fente_moyen">
                             </div>
                             <div class="col-2">
                                 <label for="fente_bon" class="form-label">Bon : </label>
-                                <input type="radio" name="fente" id="fente_bon">
+                                <input type="radio" name="fente" id="fente_bon" value="fente_bon">
                             </div>
                             <div class="col-2">
                                 <label for="fente_tres_bon" class="form-label">Très bon : </label>
-                                <input type="radio" name="fente" id="fente_tres_bon">
+                                <input type="radio" name="fente" id="fente_tres_bon" value="fente_tres_bon">
                             </div>
                         </div>
                     </ol>
@@ -570,9 +589,9 @@
                                 <td>Participe à toutes les phases du jeu</td>
                             </tr>
                             <tr>
-                                <td><input type="radio" name="participe" id="ne_participe"></td>
-                                <td><input type="radio" name="participe" id="participe"></td>
-                                <td><input type="radio" name="participe" id="participe_toutes_phases"></td>
+                                <td><input type="radio" name="participe" id="ne_participe" value="ne_participe"></td>
+                                <td><input type="radio" name="participe" id="participe" value="participe"></td>
+                                <td><input type="radio" name="participe" id="participe_toutes_phases" value="participe_toutes_phases"></td>
                             </tr>
                         </table>
 
@@ -599,18 +618,18 @@
                                 <td>Très bon</td>
                             </tr>
                             <tr>
-                                <td><input type="radio" name="tir_face_gardien" id="tir_face_gardien_moy"></td>
-                                <td><input type="radio" name="tir_face_gardien" id="tir_face_gardien_bon"></td>
-                                <td><input type="radio" name="tir_face_gardien" id="tir_face_gardien_tbon"></td>
-                                <td><input type="radio" name="passe" id="passe__moy"></td>
-                                <td><input type="radio" name="passe" id="passe_bon"></td>
-                                <td><input type="radio" name="passe" id="passe_tbon"></td>
-                                <td><input type="radio" name="tir_decision" id="tir_decision_moy"></td>
-                                <td><input type="radio" name="tir_decision" id="tir_decision_bon"></td>
-                                <td><input type="radio" name="tir_decision" id="tir_decision_tbon"></td>
-                                <td><input type="radio" name="monte_repli" id="monte_repli_moy"></td>
-                                <td><input type="radio" name="monte_repli" id="monte_repli_bon"></td>
-                                <td><input type="radio" name="monte_repli" id="monte_repli_tbon"></td>
+                                <td><input type="radio" name="tir_face_gardien" id="tir_face_gardien_moy" value="tir_face_gardien_moy"></td>
+                                <td><input type="radio" name="tir_face_gardien" id="tir_face_gardien_bon" value="tir_face_gardien_bon"></td>
+                                <td><input type="radio" name="tir_face_gardien" id="tir_face_gardien_tbon" value="tir_face_gardien_tbon"></td>
+                                <td><input type="radio" name="passe" id="passe__moy" value="passe__moy"></td>
+                                <td><input type="radio" name="passe" id="passe_bon" value="passe_bon"></td>
+                                <td><input type="radio" name="passe" id="passe_tbon" value="passe_tbon"></td>
+                                <td><input type="radio" name="tir_decision" id="tir_decision_moy" value="tir_decision_moy"></td>
+                                <td><input type="radio" name="tir_decision" id="tir_decision_bon" value="tir_decision_bon"></td>
+                                <td><input type="radio" name="tir_decision" id="tir_decision_tbon" value="tir_decision_tbon"></td>
+                                <td><input type="radio" name="monte_repli" id="monte_repli_moy" value="monte_repli_moy"></td>
+                                <td><input type="radio" name="monte_repli" id="monte_repli_bon" value="monte_repli_bon"></td>
+                                <td><input type="radio" name="monte_repli" id="monte_repli_tbon" value="monte_repli_tbon"></td>
                             </tr>
                         </table>
                     </ol>
