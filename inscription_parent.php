@@ -15,7 +15,8 @@
             $connect = (string)check($_POST['connect']);
             $motDePasse = sha1(check($_POST['motDePasse']));
 
-            $connect = new PDO('mysql: host=localhost; dbname=handball', 'root', '');
+            require "connectDataBase.php";
+            $connect = DataBase::connect();
             $requete = $connect->prepare("
                 INSERT INTO utilisateur_parent(nom_prenoms, ville, parent_de, email, motDePasse, connect)
                 VALUES(?, ?, ?, ?, ?, ?);
@@ -47,10 +48,23 @@
     <title>Inscription (2/2)</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="icon" href="images/head-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&famil
+    y=Reem+Kufi+Fun:wght@400..700&display=swap" 
+    rel="stylesheet">
 </head>
 <style>
+    *{
+        font-size: 15px;
+        font-family: "Outfit", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+    }
     .h-img{
         height: 90vh;
+        object-fit: full;
     }
 </style>
 <body>
@@ -58,7 +72,7 @@
         <div class="container mx-auto my-3">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <img src="images/ins-parent.png" alt="Un entraîneur" class="img w-100 h-img">
+                    <img src="images/parent-img.jpg" alt="Un entraîneur" class="img w-100 h-img">
                 </div>
                 <div class="col-lg-6 col-md-6 justify-content-center my-4">
                     <div>

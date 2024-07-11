@@ -23,8 +23,20 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="icon" href="images/head-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&famil
+    y=Reem+Kufi+Fun:wght@400..700&display=swap" 
+    rel="stylesheet">
 </head>
 <style>
+    *{
+        font-size: 15px;
+        font-family: "Outfit", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+    }
     #img-traite{
         width: 200px;
         height: 200px;
@@ -40,7 +52,7 @@
     <main class="container-fluid my-5">
         <div class="row">
             <?php require "aside.php"; ?>
-            <div class="col-10">
+            <div class="col-10 mx-auto">
                 <div class="row">
                     <div class="col-3">
                         <?php if(!empty($_SESSION['profil']) && isset($_SESSION['profil'])){ ?>
@@ -50,14 +62,35 @@
                         <?php } ?>
                     </div>
                     <div class="col-8">
-                        <h4>Ousmane Traoré</h4>
+                        <h4>
+                            <?php
+                                if(!empty($_SESSION['nom'])){
+                                    echo $_SESSION['nom']. " ".$_SESSION['prenoms'];
+                                }elseif(!empty($_SESSION['nom_prenoms'])){
+                                    echo $_SESSION['nom_prenoms'];
+                                }else{
+                                    echo "Ousmane TRAORE";
+                                }
+                            ?>
+                        </h4>
                         <div class="text-primary">
                             <div class="row mt-3">
                                 <span>
                                     <strong><i class="fa fa-user" style="font-size: 30px;"></i></strong>
                                 </span>
                                 <span class="col-5">
-                                    <strong>Ousmane Traoré est l'un de nos meilleurs joueurs</strong>
+                                    <strong>
+                                        <?php 
+                                             if(!empty($_SESSION['nom'])){
+                                                echo $_SESSION['nom']. " ".$_SESSION['prenoms'];
+                                            }elseif(!empty($_SESSION['nom_prenoms'])){
+                                                echo $_SESSION['nom_prenoms'];
+                                            }else{
+                                                echo "Ousmane TRAORE";
+                                            }
+                                        ?> 
+                                        est l'un de nos meilleurs joueurs
+                                    </strong>
                                 </span>
                             </div>
                         </div>
@@ -81,7 +114,7 @@
                                     <h4 class="mt-5">32</h4>
                                 </div>
                                 <div class="col-4 text-center ">
-                                    <h4 class="mt-5">Défence</h4>
+                                    <h4 class="mt-5">Défense</h4>
                                 </div>
                             </div>
                         </div>
@@ -92,9 +125,9 @@
                 </div>
                 <div class="row">
                     <?php information("check", "Performance", "83%") ?>
-                    <?php information("trophy", "Nombre de match gagné", "112h") ?>
-                    <?php information("minus-circle", "Nombre de match perdu", "10h") ?>
-                    <?php information("graduation-cap", "Compétences", "7") ?>
+                    <?php information("trophy", "Nombre de tir", "112") ?>
+                    <?php information("minus-circle", "Efficacité", "10h") ?>
+                    <?php information("graduation-cap", "Participation", "Défense") ?>
                 </div>
                 <div class="row mt-3 mx-5 my-2">
                     <div class="col-5 mt-3 mr-5">
@@ -111,7 +144,7 @@
                                         <span class="text-start pr-5"><strong>Progrès de la séance</strong></span>
                                         <span class="text-right">2/3 séances</span>
                                     </p>
-                                    <hr width="100%" size="10" style="background-color: gray; border-radius: 10px;">
+                                    <hr class="ml-3" width="95%" size="10" style="height: 3px; background-color: gray;">
                                     <p>
                                         Terminer 3 séances d'affilé
                                     </p>
@@ -120,7 +153,7 @@
                         </div>
                         <div>
                             <div class="row info-joueur">
-                                <div class="bg-light m-2 p-3 info-joueur text-center">
+                                <div class="bg-light m-3 p-3 info-joueur text-center">
                                     <i class="fa fa-trophy" style="font-size: 30px;"></i>
                                 </div>
                                 <div class="">
@@ -128,7 +161,7 @@
                                         <span class="text-start pr-5"><strong>Nombre de point gagné</strong></span>
                                         <span class="text-right">1200/3000</span>
                                     </p>
-                                    <hr width="100%" size="10" style="background-color: gray; border-radius: 10px;">
+                                    <hr class="ml-3" width="95%" size="10" style="height: 3px; background-color: gray;">
                                 </div>
                             </div>
                         </div>
@@ -147,7 +180,7 @@
                                         <span class="text-start pr-5"><strong>Progrès de la séance</strong></span>
                                         <span class="text-right">2/3 séances</span>
                                     </p>
-                                    <hr width="100%" size="10" style="background-color: gray; border-radius: 10px;">
+                                    <hr class="ml-3" width="95%" size="10" style="height: 3px; background-color: gray;">
                                     <p>
                                         Terminer 3 séances d'affilé
                                     </p>
@@ -156,7 +189,7 @@
                         </div>
                         <div>
                             <div class="row info-joueur">
-                                <div class="bg-light m-2 p-3 info-joueur text-center">
+                                <div class="bg-light m-3 p-3 info-joueur text-center">
                                     <i class="fa fa-trophy" style="font-size: 30px;"></i>
                                 </div>
                                 <div class="">
@@ -164,7 +197,7 @@
                                         <span class="text-start pr-5"><strong>Nombre de point gagné</strong></span>
                                         <span class="text-right">1200/3000</span>
                                     </p>
-                                    <hr width="100%" size="10" style="background-color: gray; border-radius: 10px;">
+                                    <hr class="ml-3" width="95%" size="10" style="height: 3px; background-color: gray;">
                                 </div>
                             </div>
                         </div>

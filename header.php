@@ -26,33 +26,43 @@
         background-color: blue;
     }
 </style>
-<section class="container mx-auto">
-    <div class="col-12 mx-5" id="h-bar">
-        <div class="row">
-            <div class="row border px-3 mt-3 col-4 text-start" id="bar">
-                <form action="#" method="post">
-                    <input type="text" size="30%" name="search" id="search" placeholder="Rechercher un club de HandBall" class="fa fa-search py-2">
-                </form>
-                <span><i class="fa fa-search py-2 text-end"></i></span>
+<section class="container px-5 mx-auto">
+    <div class="row ml-4 d-flex justify-content-between" id="h-bar">
+        <div class="col-lg-4 col-md-4 col-12 border px-3 mt-3" id="bar">
+            <div class="row">
+                <div class="col-4">
+                    <form action="#" method="post">
+                        <input type="text" size="30%" name="search" id="search" placeholder="Rechercher un club de HandBall" class="fa fa-search py-2">
+                    </form>
+                </div>
+                <div class="col-8 text-right">
+                    <span><i class="fa fa-search py-2 text-end"></i></span>
+                </div>
             </div>
-            <div class="mx-5 mt-3 text-right col-7">
-                <span class="container text-right">
-                    <i class="fa fa-bell-o px-1" style="font-size: 25px;"></i>
-                    <i class="fa fa-comment-o px-1" style="font-size: 25px;"></i>
-                </span>
-                <?php if(!empty($_SESSION['profil']) && isset($_SESSION['profil'])){ ?>
-                    <span class="container text-right px-2">
-                            <img src="images/img-joueur/<?=$_SESSION['profil']?>" alt="" class="img" id="profil">
-                    </span>
-                <?php }else{ ?>
-                    <span class="container text-right px-2">
-                            <i class="fa fa-user" style="font-size: 30px;"></i>
-                    </span>
-                <?php } ?>
-                <span>
-                    HandBall
-                    <i class="fa fa-angle-down px-1" style="font-size: 20px;"></i>
-                </span>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12 text-lg-end mt-3">
+            <div class="row">
+                <div class="col-4 text-right mt-2">
+                    <i class="fa fa-bell-o px-1" style="font-size: 20px;"></i>
+                    <i class="fa fa-comment-o px-1" style="font-size: 20px;"></i>
+                </div>
+                <div class="col-2">
+                    <?php if(!empty($_SESSION['profil']) && isset($_SESSION['profil'])){ ?>
+                        <img src="images/img-joueur/<?=$_SESSION['profil']?>" alt="" class="img my-auto" id="profil">
+                    <?php }else{ ?>
+                        <i class="fa fa-user" style="font-size: 30px;"></i>
+                    <?php } ?>
+                </div>
+                <div class="col-4">
+                    <div class="row d-flex justify-content-between mt-2">
+                        <div class="col-4">
+                            HandBall
+                        </div>
+                        <div class="col-4">
+                            <i class="fa fa-angle-down px-1" style="font-size: 20px;"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

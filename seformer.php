@@ -24,8 +24,20 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="icon" href="images/head-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&famil
+    y=Reem+Kufi+Fun:wght@400..700&display=swap" 
+    rel="stylesheet">
 </head>
 <style>
+    *{
+        font-size: 15px;
+        font-family: "Outfit", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+    }
     .rad{
         border-radius: 20px;
     }
@@ -37,9 +49,9 @@
     <main class="container-fluid">
         <div class="row">
         <?php require "aside.php"; ?>
-            <div class="col-10 mx-auto">
-                <h2 class="text-start mx-5">
-                    <strong>Suivez nos formations pour améliorer votre niveau</strong>
+            <div class="col-10">
+                <h2 class="text-center">
+                    Suivez nos formations pour améliorer votre niveau
                 </h2>
                 <div class="row px-3 mx-3 my-3">
                     <?php view_img("images/wax-person-01.png", "Les règles fondamentales", "video/BLACK CLOVER 001 VF.mp4"); ?>

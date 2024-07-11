@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $mailError = null;
     $nomPrenoms = null;
     $ville = null;
@@ -14,8 +15,8 @@
             $mail = check($_POST['mail']);
             $connect = (string)check($_POST['connect']);
             $motDePasse = sha1(check($_POST['motDePasse']));
-
-            $connect = new PDO('mysql: host=localhost; dbname=handball', 'root', '');
+            require "connectDataBase.php";
+            $connect = DataBase::connect();
             $requete = $connect->prepare("
                 INSERT INTO utilisateur_entraineur(nom_prenoms, ville, annee_experience, mail, motDePasse, valcheck)
                 VALUES(?, ?, ?, ?, ?, ?);
@@ -47,7 +48,21 @@
     <title>Inscription (2/2)</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="icon" href="images/head-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&famil
+    y=Reem+Kufi+Fun:wght@400..700&display=swap" 
+    rel="stylesheet">
 </head>
+<style>
+    *{
+        font-size: 15px;
+        font-family: "Outfit", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+    }
+</style>
 <body>
     <section>
         <div class="container mx-auto my-3">

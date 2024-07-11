@@ -25,7 +25,21 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="icon" href="images/head-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&famil
+    y=Reem+Kufi+Fun:wght@400..700&display=swap" 
+    rel="stylesheet">
 </head>
+<style>
+    *{
+        font-size: 15px;
+        font-family: "Outfit", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+    }
+</style>
 <body>
     <header>
         <?php require "header.php"; ?>
@@ -33,45 +47,18 @@
     <main class="container-fluid">
         <div class="row">
         <?php require "aside.php"; ?>
-            <div class="col-10 mx-auto">
+            <div class="col-lg-10 col-6 mx-auto">
                 <h2 class="text-center  ">
-                    <strong>Adhésion à notre club</strong>
+                    Adhésion à notre club
                 </h2>
-                <h2 class="text-center">Qui ?</h2>
                 <p class="text-justify">
                     Toute personne saine physiquement, mentalement et moralement aimant le défi physique, la collaboration et fait travailler son intellectuel pour venir à bout des défis rencontrés sur le terrain et en dehors. C'est une école de la vie qui vous prépare individuellement et collectivement au défis futur. <br>Prêt à vivre l'excitation du handball avec une équipe passionnée et dévouée ? Rejoignez notre club de handball et decouvrez une communauté dynamique ou l'esprit d'equipe et la compétition se rencontrent. Le club est ouvert:  
                 </p>
                 <div class="row mx-auto my-4">
-                    <div class="col-4 d-flex">
-                        <img src="images/adh-wax-01.jpeg" alt="La main dans la main" class="img w-75 align-self-end">
+                    <div class="col-lg-4 col-12 text-center">
+                        <img src="images/main_main.png" alt="La main dans la main" class="img w-75">
                     </div>
-                    <div class="col-8 my-5">
-                        <h3 class="text-center">
-                            <strong>1. Aux amateurs du handball</strong>
-                        </h3>
-                        <p class="text-center" style="font-size: 16px;">
-                            Qui veulent juste apprendre le handball par passion et juste pour jouer avec des amis.
-                        </p>
-                    </div>
-                </div>
-                <div class="row mx-auto my-4 bg-light">
-                    <div class="col-8 my-5">
-                        <h3 class="text-center mt-5">
-                            <strong>2. Aux professionnels de handball</strong>
-                        </h3>
-                        <p class="text-center" style="font-size: 16px;">
-                            Qui veulent apprendre le handball pour en faire une profession.
-                        </p>
-                    </div>
-                    <div class="col-4 d-flex">
-                        <img src="images/adh-wax-02.jpeg" alt="La main dans la main" class="img w-75 align-self-end">
-                    </div>
-                </div>
-                <div class="row mx-auto my-4">
-                    <div class="col-4">
-                        <img src="images/adh-wax-03.jpeg" alt="La main dans la main" class="img w-75">
-                    </div>
-                    <div class="col-8 my-4">
+                    <div class="col-lg-8 col-12 my-4">
                         <h3 class="text-center">
                             <strong>Avantage 1</strong>
                         </h3>
@@ -86,7 +73,7 @@
                     </div>
                 </div>
                 <div class="row mx-auto bg-light my-4">
-                    <div class="col-8 my-4">
+                    <div class="col-lg-8 col-12 my-4">
                         <h3 class="text-center">
                             <strong>Avantage 2</strong>
                         </h3>
@@ -96,8 +83,8 @@
                             des souvenirs durables lors de nos événements sportifs et sociaux.
                         </p> 
                     </div>
-                    <div class="col-4">
-                        <img src="images/adh-wax-04.jpeg" alt="La main dans la main" class="img w-75">
+                    <div class="col-lg-4 col-12 text-center">
+                        <img src="images/main_hanche.png" alt="La main dans la main" class="img w-75">
                     </div>
                 </div>
                 <div class="text-center">

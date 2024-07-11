@@ -9,7 +9,7 @@
     }
 </style>
 <aside class="col-1">
-    <div>
+    <div >
         <div class="text-center pb-2 my-1 <?php if(!empty($el) && $el === "accueil"): ?> act <?php endif ?>">
             <a href="accueil.php" alt='el_a'>
                 <i class="fa fa-home" style="font-size: 25px; color:blue;"></i>
@@ -49,10 +49,21 @@
             </a>
         </div>
         <div class="text-center">
-            <a href="deconnexion.php" alt='el_a'>
-                <i class="fa fa-sign-in" style="font-size: 25px; color:blue;"></i>
-                <p class="h5">Se Déconnecter</p>
-            </a>
+            <?php
+                if(!empty($_SESSION['mail'])){
+            ?>
+                <a href="deconnexion.php" alt='el_a'>
+                    <i class="fa fa-sign-in" style="font-size: 25px; color:blue;"></i>
+                    <p class="h5">Se Déconnecter</p>
+                </a>
+            <?php
+                }else{
+            ?>
+                <a href="index.php" alt='el_a'>
+                    <i class="fa fa-sign-in" style="font-size: 25px; color:blue;"></i>
+                    <p class="h5">Se Connecter</p>
+                </a>
+            <?php } ?>
         </div>
     </div>
 </aside>

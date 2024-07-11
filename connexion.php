@@ -9,7 +9,8 @@
     if(!empty($_POST) && isset($_POST)){
         $mail = $_POST['mail'];
         $mp =  sha1($_POST['motDePasse']);
-        include 'connectDataBase.php';
+        require 'connectDataBase.php';
+        $connect = DataBase::connect();
         $requete = $connect->prepare("SELECT * FROM utilisateur_parent WHERE email = ? AND motDePasse = ?;");
         $requete->execute(array($mail, $mp));
         $utilisateur_parent = $requete->fetch();
@@ -24,12 +25,13 @@
         if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
             if($requete->rowCount() > 0){
                 $_SESSION['nom_prenoms'] = $utilisateur_parent['nom_prenoms'];
-                $_SESSION['mail'] = $utilisateur_parent['mail'];
+                $_SESSION['mail'] = $utilisateur_parent['email'];
                 $_SESSION['ville'] = $utilisateur_parent['ville'];
                 header("Location: accueil.php");
             }elseif($requete1->rowCount() > 0){
                 $_SESSION['profil'] = $utilisateur_joueur['profil'];
-                $_SESSION['nom_prenoms'] = $utilisateur_joueur['nom_prenoms'];
+                $_SESSION['nom'] = $utilisateur_joueur['nom'];
+                $_SESSION['prenoms'] = $utilisateur_joueur['prenoms'];
                 $_SESSION['mail'] = $utilisateur_joueur['mail'];
                 $_SESSION['ville'] = $utilisateur_joueur['ville'];
                 header("Location: accueil.php");
@@ -55,15 +57,29 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/head-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&famil
+    y=Reem+Kufi+Fun:wght@400..700&display=swap" 
+    rel="stylesheet">
 </head>
+<style>
+    *{
+        font-size: 15px;
+        font-family: "Outfit", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+    }
+</style>
 <body>
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-6">
-                    <img src="images/wax-04.png" alt="Un joueur de handball" class="img">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <img src="images/wax-04.png" alt="Un joueur de handball" class="img w-100">
                 </div>
-                <div class="col-6 mt-5">
+                <div class="col-lg-6 col-md-6 col-12 mt-5">
                     <form action="connexion.php" method="post">
                         <legend class="text-center text-primary">Connexion</legend>
                         <div class="mt-2">

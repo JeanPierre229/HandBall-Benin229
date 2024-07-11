@@ -53,9 +53,9 @@
                     Achat d'équipement sportif pour le HandBall
                 </h2>
                 <div class="row px-3 mx-3 my-3">
-                    <div class="text-center mx-auto my-2">
+                    <div class="col text-center my-2">
                         <form action="achat_equipement.php" method="post" class="formulaire">
-                                <img src="images/ballon-handball.png" alt="Un ballon de HandBall" class="img w-75">
+                                <img src="images/ballon-handball.png" style="height: 150px; width: 90px; object-fit:cover; border-radius: 5px;" alt="Un ballon de HandBall" class="img w-75">
                                 <h5 class="text-primary">Ballon de HandBall</h5>
                                 <h6>Prix : 7000 FCFA</h6>
                                 <input type="number" name="montant" id="montant" style="display: none;" value="7000">
@@ -63,18 +63,18 @@
                         </form>
                     </div>
                     <span class="mx-3"></span>
-                    <div class="text-center mx-auto my-2">
+                    <div class="col text-center mx-auto my-2">
                         <form action="achat_equipement.php" method="post" class="formulaire1">
-                                <img src="images/maillot.png" alt="Un maillots" class="img w-75">
+                                <img src="images/maillot.png" style="height: 150px; object-fit:cover; border-radius: 5px;" alt="Un maillots" class="img w-75">
                                 <h5 class="text-primary">Maillots</h5>
                                 <h6>Prix : 3000 FCFA</h6>
                                 <input type="number" name="montant" id="montant" style="display: none;" value="3000">
                                 <button class="btn btn-primary px-5 py-0 rad">Acheter</button>
                         </form>
                     </div>
-                    <div class="text-center mx-auto my-2">
+                    <div class="col text-center mx-auto my-2">
                         <form action="achat_equipement.php" method="post" class="formulaire2">
-                                <img src="images/chaussure.png" alt="Une chaussure de handball" class="img w-75">
+                                <img src="images/chaussure.png" style="height: 150px; object-fit:cover; border-radius: 5px;" alt="Une chaussure de handball" class="img w-75">
                                 <h5 class="text-primary">Chaussure handball</h5>
                                 <h6>Prix : 5000 FCFA</h6>
                                 <input type="number" name="montant" id="montant" style="display: none;" value="5000">
@@ -123,7 +123,10 @@
 
         classe.onsubmit=(e)=>{
             e.preventDefault();
-            openKkiapayWidget({amount:classe.montant.value, position: "right", callback: "/success", 
+            openKkiapayWidget({
+            amount:classe.montant.value, 
+            position: "right", 
+            callback: "http://localhost:80/Projet_WaxangariLabs/index.php", 
             data: "Test de paiement",
             theme: "#092374",
             sandbox: "true",

@@ -96,7 +96,8 @@
     
             if($upload){
                 // Insertion dans la base de données seulement si l'upload est réussi
-                $connect = new PDO("mysql:host=localhost; dbname=handball", "root", "");
+                require "connectDataBase.php";
+                $connect = DataBase::connect();
                 $requete1 = $connect->prepare("
                         INSERT INTO utilisateurs_joueurs
                                     (profil, nom, prenoms, date_naissance, 
@@ -117,9 +118,9 @@
                                     '$tir_decision', '$monte_repli', '$mail', '$motDePasse', '$connecte');
                 ");
                 $requete1->execute();
-                header("Location: accueil.php");
+                header("Location: connexion.php");
 
-                //$_SESSION['profil'] = $image;
+                $_SESSION['profil'] = $image;
             }
         }
     }
@@ -141,9 +142,21 @@
     <link rel="stylesheet" href="css/inscription_joueur.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&famil
+    y=Reem+Kufi+Fun:wght@400..700&display=swap" 
+    rel="stylesheet">
     <title>Inscription_Joueur(e) - WaxangariLabs</title>
 </head>
 <style>
+    *{
+        font-size: 15px;
+        font-family: "Outfit", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+    }
     .photo-container {
             display: flex;
             justify-content: center;
@@ -441,7 +454,7 @@
                             <div class="col-2 mt-2 text-start d-inline">
                                 <span>
                                     <label for="sargent_test" class="form-label">Sargent test : </label>
-                                    <input type="checkbox" name="sargent_test" id="sargent_test">
+                                    <input type="checkbox" name="sargent_test" id="sargent_test" checked>
                                 </span>
                             </div>
                             
